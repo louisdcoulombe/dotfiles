@@ -1,6 +1,9 @@
+" vim:fdm=marker
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Vundle Packages {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=$VIM/vimfiles/bundle/Vundle.vim/
 call vundle#begin('$VIM/vimfiles/bundle/')
@@ -26,7 +29,45 @@ Plugin 'https://github.com/davidhalter/jedi-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" Basic setup
+" ------- Plugin configurations ------
+" Vim Airline {{{
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_section_z = '%{getcwd()}'
+"}}}
+
+" EasyMotion {{{
+nmap <space> <Plug>(easymotion-s)
+nmap t <Plug>(easymotion-t2)
+let g:EasyMotion_smartcase = 1
+"}}}
+
+" Utilsnip {{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<M-tab>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+" }}}
+
+" CTRL-P {{{
+set wildignore+=*.swp,*.zip,*.exe,*.pbi,*.r34,*.pb*,*.d,\\Debug\\,\\Release\\,\\Obj\
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_working_path_mode = 'w'
+" }}}
+
+" Python mode {{{
+let g:pymode_rope = 1
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+let g:pymode_folding = 0
+let g:pymode_rope_completion = 0
+" }}}
+
+"}}}
+
+" Basic setup {{{
 syntax on
 set nocompatible
 set autoread
@@ -46,28 +87,28 @@ set number
 set noerrorbells         " don't beep
 
 set nobackup
+set nowritebackup
 
 " Remap save
 nnoremap <C-s> :w<cr>
+" }}}
 
-" Windows navigation remapping.
+" Windows navigation remapping. {{{
 " CTRL-<H-L>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+" }}}
 
-" Switch buffer back and forth
+" Buffer remap {{{
 nnoremap <F6> :bn<cr>
 nnoremap <F5> :bp<cr>
 nnoremap <F7> :q<cr>
 nnoremap <silent><F8> :bp\|bd #<cr>
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_section_z = '%{getcwd()}'
+"}}}
 
+" Movements {{{
 nnoremap j gj
 nnoremap k gk
 map f $
@@ -76,36 +117,29 @@ map <C-e> :Vexplore<cr>
 
 nnoremap ]] ]]zz
 nnoremap [[ [[zz
+" }}}
 
+" CScope  {{{
 nnoremap <leader>s :cs find s <cword><cr>
 nnoremap <leader>c :cs find c <cword><cr>
 nnoremap <leader>g :cs find g <cword><cr>
+" }}}
 
-
-" Additionnal otion using leader
+" Additionnal otion using leader {{{
 let mapleader=","
 
 nnoremap <leader><CR> :nohlsearch<cr>
 nnoremap <leader>erc :vsplit $MYVIMRC<CR>  
 nnoremap <F12> :so %<CR>
 noremap <Leader>m %
-" EasyMotion
-nmap <space> <Plug>(easymotion-s)
-nmap t <Plug>(easymotion-t2)
-let g:EasyMotion_smartcase = 1
+" }}}
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<M-tab>"
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-
-" Statusline
-
-" Set to 256 color and set colorscheme
+" Colorscheme {{{
 set t_Co=256
 colorscheme sourcerer
+" }}}
 
-" Relative or absolute number lines
+" Toggle Numbers  {{{
 function! NumberToggle()
     if(&nu == 1)
         set nu!
@@ -117,36 +151,28 @@ function! NumberToggle()
 endfunction
 
 nnoremap <leader><tab> :call NumberToggle()<CR>
+" }}}
             
-" Disable arrow keys
+" Disable arrow keys {{{
 noremap <Right> :vertical resize +5<CR>
 noremap <Left> :vertical resize -5<CR>
 noremap <Up> :resize +5<CR>
 noremap <Down> :resize -5<CR>
+" }}}
 
-" CTRL-P
-set wildignore+=*.swp,*.zip,*.exe,*.pbi,*.r34,*.pb*,*.d,\\Debug\\,\\Release\\,\\Obj\
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_working_path_mode = 'w'
+" Ag {{{
+ca Ag Ag!
+nnoremap <leader>ff :Ag! <cword><CR>
+" }}}
 
-" Alias
+" Path related {{{
+cd D:\Projects\
 nnoremap <leader>lsr :cd d:\Projects\LSR_C\TopWorks-LMT-00.09.32\<cr>
 nnoremap <leader>llt :cd d:\Projects\LSR_C\LMT_SOURCES\LLT\<cr>
 nnoremap <leader>vim :cd d:\Apps\Vim\vimfiles\<cr>
-nnoremap <leader>ff :Ag! <cword><CR>
-ca Ag Ag!
+" }}}
 
-cd D:\Projects\
-
-" Python mode
-let g:pymode_rope = 1
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-let g:pymode_folding = 0
-let g:pymode_rope_completion = 0
-
-
-" Windows related stuff """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Windows related stuff  {{{
 
 set guifont=Lucida_Console:h10
 
@@ -161,8 +187,5 @@ behave mswin
 noremap <C-V> <C-V>
 noremap <C-A> <C-A>
 set ff=dos
-
-
-
-
+" }}}
 
