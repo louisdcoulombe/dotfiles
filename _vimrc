@@ -29,7 +29,6 @@ Plugin 'https://github.com/davidhalter/jedi-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-
 "}}}
 
 " Basic setup {{{
@@ -56,6 +55,8 @@ set nowritebackup
 
 " Remap save
 nnoremap <C-s> :w<cr>
+" Sudo write
+noremap <leader>W :w !sudo tee %<CR>
 " }}}
 
 " Windows navigation remapping. {{{
@@ -109,6 +110,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 set wildignore+=*.swp,*.zip,*.exe,*.pbi,*.r34,*.pb*,*.d,\\Debug\\,\\Release\\,\\Obj\
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_working_path_mode = 'w'
+let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache, to improve CtrlP startup
 " }}}
 
 " Python mode {{{

@@ -29,42 +29,6 @@ Plugin 'https://github.com/davidhalter/jedi-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" ------- Plugin configurations ------
-" Vim Airline {{{
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_section_z = '%{getcwd()}'
-"}}}
-
-" EasyMotion {{{
-nmap <space> <Plug>(easymotion-s)
-nmap t <Plug>(easymotion-t2)
-let g:EasyMotion_smartcase = 1
-"}}}
-
-" Utilsnip {{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<M-tab>"
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-" }}}
-
-" CTRL-P {{{
-set wildignore+=*.swp,*.zip,*.exe,*.pbi,*.r34,*.pb*,*.d,\\Debug\\,\\Release\\,\\Obj\
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_working_path_mode = 'w'
-" }}}
-
-" Python mode {{{
-let g:pymode_rope = 1
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-let g:pymode_folding = 0
-let g:pymode_rope_completion = 0
-" }}}
-
 "}}}
 
 " Basic setup {{{
@@ -120,6 +84,43 @@ map <C-e> :Vexplore<cr>
 
 nnoremap ]] ]]zz
 nnoremap [[ [[zz
+" }}}
+
+" ------- Plugin configurations ------
+" Vim Airline {{{
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_section_z = '%{getcwd()}'
+"}}}
+
+" EasyMotion {{{
+nmap <space> <Plug>(easymotion-s)
+nmap t <Plug>(easymotion-t2)
+let g:EasyMotion_smartcase = 1
+"}}}
+
+" Utilsnip {{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<M-tab>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+" }}}
+
+" CTRL-P {{{
+set wildignore+=*.swp,*.zip,*.exe,*.pbi,*.r34,*.pb*,*.d,\\Debug\\,\\Release\\,\\Obj\
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_working_path_mode = 'w'
+let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache, to improve CtrlP startup
+" }}}
+
+" Python mode {{{
+let g:pymode_rope = 1
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+let g:pymode_folding = 0
+let g:pymode_rope_completion = 0
 " }}}
 
 " CScope  {{{
