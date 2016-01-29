@@ -25,6 +25,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'https://github.com/scrooloose/nerdcommenter'
 Plugin 'klen/python-mode'
 Plugin 'https://github.com/davidhalter/jedi-vim'
+Plugin 'MattesGroeger/vim-bookmarks'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -50,9 +51,11 @@ set incsearch
 set number
 set noerrorbells         " don't beep
 
-set nobackup
-set nowritebackup
 
+nnoremap <F9> :set ignorecase!<cr>
+nnoremap * :keepjumps normal! mi*`i<CR>
+nnoremap <Backspace> :nohlsearch<cr>
+nnoremap <F12> :so %<CR>
 " Remap save
 nnoremap <C-s> :w<cr>
 " Sudo write
@@ -84,6 +87,7 @@ map <C-e> :Vexplore<cr>
 nnoremap ]] ]]zz
 nnoremap [[ [[zz
 " }}}
+
 "Plugin configurations {{{
 " Vim Airline {{{
 " Enable the list of buffers
@@ -122,18 +126,20 @@ let g:pymode_rope_completion = 0
 " }}}
 
 " CScope  {{{
-nnoremap <leader>s :cs find s <cword><cr>
-nnoremap <leader>c :cs find c <cword><cr>
-nnoremap <leader>g :cs find g <cword><cr>
+nnoremap <leader>s :cscope find s <cword><cr>
+nnoremap <leader>c :cscope find c <cword><cr>
+nnoremap <leader>g :cscope find g <cword><cr>
+" }}}
+
+" Vim bookmarks {{{
+let g:bookmark_sign = 'M'
 " }}}
 " }}}
 
 " Additionnal otion using leader {{{
 let mapleader=","
 
-nnoremap <leader><CR> :nohlsearch<cr>
 nnoremap <leader>erc :vsplit $MYVIMRC<CR>  
-nnoremap <F12> :so %<CR>
 noremap <Leader>m %
 " }}}
 
@@ -171,8 +177,9 @@ nnoremap <leader>ff :Ag! <cword><CR>
 " Path related {{{
 cd D:\Projects\
 nnoremap <leader>lsr :cd d:\Projects\LSR_C\TopWorks-LMT-00.09.32\<cr>
-nnoremap <leader>llt :cd d:\Projects\LSR_C\LMT_SOURCES\LLT\<cr>
+nnoremap <leader>llt :cd d:\Projects\LSR_C\LMT_SOURCES\LLT\<cr> :cscope add cscope.out<cr>
 nnoremap <leader>vim :cd d:\Apps\Vim\vimfiles\<cr>
+
 " }}}
 
 " Windows related stuff  {{{
@@ -190,5 +197,8 @@ behave mswin
 noremap <C-V> <C-V>
 noremap <C-A> <C-A>
 set ff=dos
+
+set nobackup
+set nowritebackup
 " }}}
 
