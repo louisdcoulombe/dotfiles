@@ -25,6 +25,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'https://github.com/scrooloose/nerdcommenter'
 Plugin 'klen/python-mode'
 Plugin 'https://github.com/davidhalter/jedi-vim'
+Plugin 'https://github.com/vim-scripts/cmake.vim-syntax'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -158,10 +159,10 @@ nnoremap <leader><tab> :call NumberToggle()<CR>
 " }}}
             
 " Disable arrow keys {{{
-noremap <Right> :vertical resize +5<CR>
-noremap <Left> :vertical resize -5<CR>
-noremap <Up> :resize +5<CR>
-noremap <Down> :resize -5<CR>
+"noremap <Right> :vertical resize +5<CR>
+"noremap <Left> :vertical resize -5<CR>
+"noremap <Up> :resize +5<CR>
+"noremap <Down> :resize -5<CR>
 " }}}
 
 " Ag {{{

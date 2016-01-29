@@ -10,6 +10,8 @@ fi
 ###############################
 HISTCONTROL=ignoredups
 EDITOR=vim
+# http://bashrcgenerator.com/
+export PS1="\[\033[38;5;7m\]\u\[$(tput sgr0)\]\[\033[38;5;8m\]@\[$(tput sgr0)\]\[\033[38;5;44m\]\w\[$(tput sgr0)\]\[\033[38;5;9m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 
 ##############################
 # COMPLETETIONS
@@ -48,6 +50,10 @@ complete -f -X '!*.idl' idl idlj
 # General aliases
 alias reload_bashrc="source ~/.bashrc"
 alias disable_system_beep="xset b 0 0"
+alias toff="synclient TouchpadOff=1"
+alias ton="synclient TouchpadOff=0"
+alias coff="setxkbmap -option ctrl:nocaps"
+alias con="setxkbmap -option"
 
 # Movements
 alias ..="cd .."
@@ -100,3 +106,6 @@ alias openall=OpenAllMatchingFilesInVim
 
 #display directory tree structure
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
+# added by Anaconda2 2.4.1 installer
+export PATH="/home/elwiss/anaconda2/bin:$PATH"
