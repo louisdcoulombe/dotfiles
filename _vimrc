@@ -26,6 +26,9 @@ Plugin 'https://github.com/scrooloose/nerdcommenter'
 Plugin 'klen/python-mode'
 Plugin 'https://github.com/davidhalter/jedi-vim'
 Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'https://github.com/rhysd/vim-clang-format'
+Plugin 'https://github.com/majutsushi/tagbar'
+Plugin 'https://github.com/Valloric/YouCompleteMe'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -88,6 +91,14 @@ nnoremap ]] ]]zz
 nnoremap [[ [[zz
 " }}}
 
+" Additionnal otion using leader {{{
+let mapleader=","
+
+nnoremap <leader>erc :vsplit $MYVIMRC<CR>  
+noremap <Leader>m %
+noremap <leader>o :PymodeLintAuto<cr>:w<cr>
+" }}}
+
 "Plugin configurations {{{
 " Vim Airline {{{
 " Enable the list of buffers
@@ -119,28 +130,45 @@ let g:ctrlp_clear_cache_on_exit = 0 " Do not clear filenames cache, to improve C
 
 " Python mode {{{
 let g:pymode_rope = 1
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
 let g:pymode_folding = 0
-let g:pymode_rope_completion = 0
+let g:pymode_rope_completion = 1
+
 " }}}
 
 " CScope  {{{
-nnoremap <leader>s :cscope find s <cword><cr>
-nnoremap <leader>c :cscope find c <cword><cr>
-nnoremap <leader>g :cscope find g <cword><cr>
+nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
 " }}}
 
 " Vim bookmarks {{{
 let g:bookmark_sign = 'M'
 " }}}
+
+" Clang Formatter {{{
+" g:clang_format#
+let g:clang_format#style_options = {
+            \ "UseTab" : "Never",
+            \ "IndentWidth" : 4,
+            \ "BreakBeforeBraces" : "Allman",
+            \ "IndentCaseLabels": "false",
+            \ "ColumnLimit" : 0,
+            \ "AllowShortIfStatementsOnASingleLine" : "false"}
 " }}}
 
-" Additionnal otion using leader {{{
-let mapleader=","
+" tagbar {{{
+let g:tagbar_autofocus = 1
+let g:tagbar_left = 1
+nmap <leader>b :TagbarToggle<cr>
+"}}}
 
-nnoremap <leader>erc :vsplit $MYVIMRC<CR>  
-noremap <Leader>m %
+" YouCompleteMe {{{
+let g:ycm_global_ycm_extra_conf = 'D:\Apps\Vim\.ycm_extra_conf.py'
+" }}}
 " }}}
 
 " Colorscheme {{{
