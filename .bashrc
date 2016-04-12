@@ -86,8 +86,11 @@ alias reconf_migsp="autoheader && automake && autoconf && conf_debug_ez"
 # Valgrind aliases
 alias valg="valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes"
 
-# Coda definitions
+# ACMF related
 export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
+export http_proxy="http://10.102.22.165:8080"
+export https_proxy="https://10.102.22.165:8080"
+
 
 ##############################
 # FUNCTIONS
