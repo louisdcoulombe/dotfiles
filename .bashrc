@@ -67,10 +67,45 @@ export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
 export http_proxy="http://10.102.22.165:8080"
 export https_proxy="https://10.102.22.165:8080"
 
+# MIPAS related
+export MIGSPHOME="/mnt/work/MIPAS/MIGSP"
+export MICALHOME="/mnt/work/MIPAS/MICAL"
+
 
 ##############################
 # FUNCTIONS
 ##############################
+# FOR z.sh
+. ~/.dotfiles/z.sh
+
+alias pu="pushd '`pwd`'"
+function pd()
+{
+    if [[ $# -ge 1 ]];
+    then
+        choice="$1"
+    else
+        dirs -v
+        echo -n "? "
+        read choice
+    fi
+    if [[ -n $choice ]];
+    then
+        declare -i cnum="$choice"
+        if [[ $cnum != $choice ]];
+        then #choice is not numeric
+            choice=$(dirs -v | grep $choice | tail -1 | awk '{print $1}')
+            cnum="$choice"
+            if [[ -z $choice || $cnum != $choice ]];
+            then
+                echo "$choice not found"
+                return
+            fi
+        fi
+        choice="+$choice"
+    fi
+    pushd $choice
+}
 
 OpenAllMatchingFilesInVim() {
     find . -name "$1" -exec vim {} +
