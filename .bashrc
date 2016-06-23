@@ -24,6 +24,19 @@ alias toff="synclient TouchpadOff=1"
 alias ton="synclient TouchpadOff=0"
 alias coff="setxkbmap -option ctrl:nocaps"
 alias con="setxkbmap -option"
+alias ebashrc="vim ~/.bashrc"
+
+color_less()
+{
+    pygmentize $1 | less -R
+}
+alias cless=color_less
+
+# TMUX
+alias tmuxn="tmux new -s"
+alias tmuxa="tmux attach -t"
+alias tmuxl="tmux ls"
+
 
 # Movements
 alias ..="cd .."
@@ -36,13 +49,26 @@ alias ll="ls -altr --color"
 alias ls="ls --color"
 alias lr="ll -R "
 alias cp="cp -rv "
+alias rm="rm -v "
+alias mv="mv -v"
 alias grep='grep --color=auto'
 alias h='history'
 alias df="df -h"
 alias mkcd='_(){ mkdir -pv $1; cd $1; }; _'
+alias vi="vim"
+
+
+alias setdst='export dst=`pwd`'
+copy_dst()
+{
+    cp -rv "$@" "$dst"
+}
+alias cpdst=copy_dst
 
 # tmux 256-colors
 alias tmux="tmux -2"
+alias tmuxa="tmux attach -t"
+alias tmuxn="tmux new -s"
 
 # Mercurial aliases
 alias log="hg log -l 8 -G"
@@ -63,13 +89,16 @@ alias reconf_migsp="autoheader && automake && autoconf && conf_debug_ez"
 alias valg="valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes"
 
 # ACMF related
-export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
+#export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
+
+# PROXY
 export http_proxy="http://10.102.22.165:8080"
 export https_proxy="https://10.102.22.165:8080"
 
 # MIPAS related
 export MIGSPHOME="/mnt/work/MIPAS/MIGSP"
 export MICALHOME="/mnt/work/MIPAS/MICAL"
+export CODA_DEFINITION="/mnt/work/MIPAS/MICAL/mical/etc/ENVISAT_MIPAS-20140120.codadef"
 
 
 ##############################

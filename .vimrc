@@ -39,11 +39,15 @@ set autoread
 set nu
 set showmatch
 set title
+" Indentation
 set textwidth=0
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set smartindent
+set autoindent
+
 set laststatus=2
 set showcmd
 set cursorline
@@ -51,9 +55,13 @@ set incsearch
 set number
 set noerrorbells         " don't beep
 set history=1000
+set hidden
 
 set nobackup
 set nowritebackup
+set noswapfile
+
+set foldmethod=marker
 
 " Remap save
 nnoremap <C-s> :w<cr>
@@ -87,6 +95,11 @@ nnoremap ]] ]]zz
 nnoremap [[ [[zz
 " }}}
 
+" File Types {{{
+autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+
+autocmd BufNewFile,BufReadPost *.run set filetype=sh
+" }}}
 
 " Additionnal otion using leader {{{
 let mapleader=","
