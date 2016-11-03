@@ -12,6 +12,7 @@ HISTCONTROL=ignoredups
 EDITOR=vim
 # http://bashrcgenerator.com/
 export PS1="\[\033[38;5;7m\]\u\[$(tput sgr0)\]\[\033[38;5;8m\]@\[$(tput sgr0)\]\[\033[38;5;44m\]\w\[$(tput sgr0)\]\[\033[38;5;9m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+unset SSH_ASKPASS
 
 ##############################
 # ALIASES 
