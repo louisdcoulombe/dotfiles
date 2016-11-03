@@ -32,11 +32,6 @@ color_less()
 }
 alias cless=color_less
 
-# TMUX
-alias tmuxn="tmux new -s"
-alias tmuxa="tmux attach -t"
-alias tmuxl="tmux ls"
-
 
 # Movements
 alias ..="cd .."
@@ -70,6 +65,7 @@ alias cpdst=copy_dst
 alias tmux="tmux -2"
 alias tmuxa="tmux attach -t"
 alias tmuxn="tmux new -s"
+alias tmuxl="tmux ls"
 
 # Mercurial aliases
 alias hgl="hg log -l 8 -G"
@@ -80,8 +76,10 @@ alias hgp="hg push"
 
 # Git alias
 alias gai="git add --interactive"
+alias ga="git add"
 alias gcm="git commit -m"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gs="git status"
 
 # Make aliases
 alias conf_debug="./configure CFLAGS='-g -Wall -Wextra -O0 -Werror'"
