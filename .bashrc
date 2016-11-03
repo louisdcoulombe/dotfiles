@@ -43,7 +43,7 @@ alias .....="cd ../../../.."
 alias ll="ls -altr --color"
 alias ls="ls --color"
 alias lr="ll -R "
-alias cp="cp -rv "
+alias cp="cp -irv "
 alias rm="rm -v "
 alias mv="mv -v"
 alias grep='grep --color=auto'
