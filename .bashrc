@@ -56,6 +56,7 @@ alias h='history'
 alias df="df -h"
 alias mkcd='_(){ mkdir -pv $1; cd $1; }; _'
 alias vi="vim"
+alias del="rm -rf"
 
 
 alias setdst='export dst=`pwd`'
@@ -71,10 +72,16 @@ alias tmuxa="tmux attach -t"
 alias tmuxn="tmux new -s"
 
 # Mercurial aliases
-alias log="hg log -l 8 -G"
-alias commit="hg crecord"
-alias reset="hg update -C"
-alias stats="hg stat"
+alias hgl="hg log -l 8 -G"
+alias hgc="hg crecord"
+alias hgr="hg update -C"
+alias hgs="hg stat"
+alias hgp="hg push"
+
+# Git alias
+alias gai="git add --interactive"
+alias gcm="git commit -m"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Make aliases
 alias conf_debug="./configure CFLAGS='-g -Wall -Wextra -O0 -Werror'"
@@ -92,13 +99,9 @@ alias valg="valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --tra
 #export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
 
 # PROXY
-export http_proxy="http://10.102.22.165:8080"
-export https_proxy="https://10.102.22.165:8080"
+export http_proxy="http://10.102.22.8:8080"
+export https_proxy="https://10.102.22.8:8080"
 
-# MIPAS related
-export MIGSPHOME="/mnt/work/MIPAS/MIGSP"
-export MICALHOME="/mnt/work/MIPAS/MICAL"
-export CODA_DEFINITION="/mnt/work/MIPAS/MICAL/mical/etc/ENVISAT_MIPAS-20140120.codadef"
 
 
 ##############################
@@ -143,6 +146,3 @@ alias openall=OpenAllMatchingFilesInVim
 
 #display directory tree structure
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
-
-# added by Anaconda2 2.4.1 installer
-export PATH="/home/elwiss/anaconda2/bin:$PATH"

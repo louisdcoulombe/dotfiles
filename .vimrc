@@ -63,10 +63,17 @@ set noswapfile
 
 set foldmethod=marker
 
+" Remap ; to :
+map ; :
+
 " Remap save
 nnoremap <C-s> :w<cr>
 " Sudo write
 noremap <leader>W :w !sudo tee %<CR>
+
+" Usefull commands
+command! Trimws :%s/\s\+$//e
+autocmd! bufwritepost .vimrc source %
 " }}}
 
 " Windows navigation remapping. {{{
@@ -105,7 +112,7 @@ autocmd BufNewFile,BufReadPost *.run set filetype=sh
 let mapleader=","
 
 nnoremap <silent> <backspace> :nohlsearch<cr>
-nnoremap <leader>erc :vsplit $MYVIMRC<CR>  
+nnoremap <leader>erc :vsplit $MYVIMRC<CR>
 nnoremap <F12> :so %<CR>
 noremap <Leader>m %
 " }}}
@@ -128,7 +135,7 @@ endfunction
 
 nnoremap <leader><tab> :call NumberToggle()<CR>
 " }}}
-            
+
 " Disable arrow keys {{{
 "noremap <Right> :vertical resize +5<CR>
 "noremap <Left> :vertical resize -5<CR>
