@@ -81,6 +81,7 @@ alias ga="git add"
 alias gcm="git commit -m"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status"
+alias gp="git push"
 
 # Make aliases
 alias conf_debug="./configure CFLAGS='-g -Wall -Wextra -O0 -Werror'"
