@@ -71,9 +71,10 @@ alias tmuxl="tmux ls"
 # Mercurial aliases
 alias hgl="hg log -l 8 -G"
 alias hgc="hg crecord"
-alias hgr="hg update -C"
+alias hgr="hg revert"
 alias hgs="hg stat"
 alias hgp="hg push"
+alias hguc="hg update -C"
 
 # Git alias
 alias gai="git add --interactive"

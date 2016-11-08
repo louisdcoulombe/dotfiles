@@ -145,7 +145,7 @@ nnoremap <leader><tab> :call NumberToggle()<CR>
 
 " Ag {{{
 ca Ag Ag!
-nnoremap <leader>ff :Ag! <cword><CR>
+nnoremap <leader>ff :vimgrep <cword> **/*.[ch]<CR>
 " }}}
 
 " Path related {{{
