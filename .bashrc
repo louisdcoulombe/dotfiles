@@ -100,8 +100,6 @@ alias valg="valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --tra
 #export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
 
 # PROXY
-export http_proxy="http://10.102.22.8:8080"
-export https_proxy="https://10.102.22.8:8080"
 
 
 

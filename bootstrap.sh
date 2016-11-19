@@ -14,4 +14,5 @@ ln -s .dotfiles/.vimrc .vimrc
 git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-
+# Ctags
+ls -s .dotfiles/ctags .ctags
