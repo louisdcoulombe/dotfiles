@@ -12,36 +12,7 @@ HISTCONTROL=ignoredups
 EDITOR=vim
 # http://bashrcgenerator.com/
 export PS1="\[\033[38;5;7m\]\u\[$(tput sgr0)\]\[\033[38;5;8m\]@\[$(tput sgr0)\]\[\033[38;5;44m\]\w\[$(tput sgr0)\]\[\033[38;5;9m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
-
-##############################
-# COMPLETETIONS
-##############################
-
-# Make directory commands see only directories
-complete -d cd mkdir rmdir pushd jd
-
-# Make file commands see only files
-complete -f cat less more chown ln strip nedit vim
-
-# Application completes
-complete -f -X '!*.@(zip|ZIP|jar|JAR|exe|EXE|pk3|war|wsz|ear|zargo|xpi)' unzip zipinfo unzip
-complete -f -X '*.Z' compress
-complete -f -X '!*.@(Z|gz|tgz|Gz|dz)' gunzip zcmp zdiff zcat zegrep zfgrep zgrep zless zmore
-complete -f -X '!*.Z' uncompress
-complete -f -X '!*.@(gif|jp?(e)g|tif?(f)|pn[gm]|p[bgp]m|bmp|xpm|ico|xwd|tga|pcx|GIF|JP?(E)G|TIF?(F)|PN[GM]|P[BGP]M|BMP|XPM|ICO|XWD|TGA|PCX)' ee display
-complete -f -X '!*.@(gif|jp?(e)g|tif?(f)|png|p[bgp]m|bmp|x[bp]m|rle|rgb|pcx|fits|pm|GIF|JPG|JP?(E)G|TIF?(F)|PNG|P[BGP]M|BMP|X[BP]M|RLE|RGB|PCX|FITS|PM)' xv qiv
-complete -f -X '!*.@(ps|PS)' gv ggv
-complete -f -X '!*.@(ps|PS|pdf|PDF)' fmerge
-complete -f -X '!*.@(dvi|DVI)?(.@(gz|Z|bz2))' xdvi
-complete -f -X '!*.@(dvi|DVI)' dvips dviselect dvitype
-complete -f -X '!*.@(pdf|PDF)' acroread gpdf xpdf
-complete -f -X '!*.texi*' makeinfo texi2html
-complete -f -X '!*.@(?(la)tex|?(LA)TEX|texi|TEXI|dtx|DTX|ins|INS)' tex latex slitex jadetex pdfjadetex pdftex pdflatex texi2dvi
-complete -f -X '!*.fig' xfig
-complete -f -X '!*.@(?([xX]|[sS])[hH][tT][mM]?([lL]))' netscape mozilla lynx appletviewer hotjava
-complete -f -X '!*.tar' tar
-complete -f -X '!*.java' javac
-complete -f -X '!*.idl' idl idlj
+unset SSH_ASKPASS
 
 ##############################
 # ALIASES 
@@ -54,6 +25,14 @@ alias toff="synclient TouchpadOff=1"
 alias ton="synclient TouchpadOff=0"
 alias coff="setxkbmap -option ctrl:nocaps"
 alias con="setxkbmap -option"
+alias ebashrc="vim ~/.bashrc"
+
+color_less()
+{
+    pygmentize $1 | less -R
+}
+alias cless=color_less
+
 
 # Movements
 alias ..="cd .."
@@ -65,20 +44,45 @@ alias .....="cd ../../../.."
 alias ll="ls -altr --color"
 alias ls="ls --color"
 alias lr="ll -R "
-alias cp="cp -rv "
+alias cp="cp -irv "
+alias rm="rm -v "
+alias mv="mv -v"
 alias grep='grep --color=auto'
 alias h='history'
 alias df="df -h"
 alias mkcd='_(){ mkdir -pv $1; cd $1; }; _'
+alias vi="vim"
+alias del="rm -rf"
+
+
+alias setdst='export dst=`pwd`'
+copy_dst()
+{
+    cp -rv "$@" "$dst"
+}
+alias cpdst=copy_dst
 
 # tmux 256-colors
 alias tmux="tmux -2"
+alias tmuxa="tmux attach -t"
+alias tmuxn="tmux new -s"
+alias tmuxl="tmux ls"
 
 # Mercurial aliases
-alias log="hg log -l 8 -G"
-alias commit="hg crecord"
-alias reset="hg update -C"
-alias stats="hg stat"
+alias hgl="hg log -l 8 -G"
+alias hgc="hg crecord"
+alias hgr="hg revert"
+alias hgs="hg stat"
+alias hgp="hg push"
+alias hguc="hg update -C"
+
+# Git alias
+alias gai="git add --interactive"
+alias ga="git add"
+alias gcm="git commit -m"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gs="git status"
+alias gp="git push"
 
 # Make aliases
 alias conf_debug="./configure CFLAGS='-g -Wall -Wextra -O0 -Werror'"
@@ -92,12 +96,47 @@ alias reconf_migsp="autoheader && automake && autoconf && conf_debug_ez"
 # Valgrind aliases
 alias valg="valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --track-fds=yes"
 
-# Coda definitions
-export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
+# ACMF related
+#export CODA_DEFINITION="/mnt/work/ACMF/AcmfC/etc/AEOLUS-20150429.codadef"
+
+# PROXY
+
+
 
 ##############################
 # FUNCTIONS
 ##############################
+# FOR z.sh
+. ~/.dotfiles/z.sh
+
+alias pu="pushd '`pwd`'"
+function pd()
+{
+    if [[ $# -ge 1 ]];
+    then
+        choice="$1"
+    else
+        dirs -v
+        echo -n "? "
+        read choice
+    fi
+    if [[ -n $choice ]];
+    then
+        declare -i cnum="$choice"
+        if [[ $cnum != $choice ]];
+        then #choice is not numeric
+            choice=$(dirs -v | grep $choice | tail -1 | awk '{print $1}')
+            cnum="$choice"
+            if [[ -z $choice || $cnum != $choice ]];
+            then
+                echo "$choice not found"
+                return
+            fi
+        fi
+        choice="+$choice"
+    fi
+    pushd $choice
+}
 
 OpenAllMatchingFilesInVim() {
     find . -name "$1" -exec vim {} +
@@ -106,6 +145,3 @@ alias openall=OpenAllMatchingFilesInVim
 
 #display directory tree structure
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
-
-# added by Anaconda2 2.4.1 installer
-export PATH="/home/elwiss/anaconda2/bin:$PATH"

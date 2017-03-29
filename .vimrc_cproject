@@ -1,0 +1,12 @@
+command! Makedbg :set makeprg=make\ -C\ `pwd`/build/debug/
+command! Makerel :set makeprg=make\ -C\ `pwd`/build/release/
+
+function! RefreshCscope_()
+    silent cs kill 0
+    silent !find . -name "*.[ch]" > cscope.files
+    silent !cscope -b -q -k
+    silent !ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+    silent cscope add cscope.out
+    silent redraw!
+endfunction
+command! RefreshCscope :call RefreshCscope_()
