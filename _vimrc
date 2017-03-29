@@ -20,7 +20,7 @@ Plugin 'https://github.com/airblade/vim-gitgutter'
 Plugin 'https://github.com/godlygeek/tabular'
 Plugin 'https://github.com/rking/ag.vim'
 Plugin 'https://github.com/easymotion/vim-easymotion'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'https://github.com/scrooloose/nerdcommenter'
 Plugin 'klen/python-mode'
@@ -28,7 +28,8 @@ Plugin 'https://github.com/davidhalter/jedi-vim'
 Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'https://github.com/rhysd/vim-clang-format'
 Plugin 'https://github.com/majutsushi/tagbar'
-Plugin 'https://github.com/Valloric/YouCompleteMe'
+"Plugin 'https://github.com/Valloric/YouCompleteMe'
+Plugin 'https://github.com/Shougo/vimproc.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -53,12 +54,15 @@ set cursorline
 set incsearch
 set number
 set noerrorbells         " don't beep
+set noswapfile
+set hidden
 
-
+let g:pymode_rope = 0
 nnoremap <F9> :set ignorecase!<cr>
 nnoremap * :keepjumps normal! mi*`i<CR>
 nnoremap <Backspace> :nohlsearch<cr>
 nnoremap <F12> :so %<CR>
+com! FormatJSON %!python -m json.tool
 " Remap save
 nnoremap <C-s> :w<cr>
 " Sudo write
@@ -115,9 +119,15 @@ let g:EasyMotion_smartcase = 1
 "}}}
 
 " Utilsnip {{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<M-tab>"
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 " }}}
 
@@ -150,14 +160,18 @@ let g:bookmark_sign = 'M'
 " }}}
 
 " Clang Formatter {{{
+
+map <C-I> :pyf D:/Apps/LLVM/share/clang/clang-format.py<CR>
+imap <C-I> <ESC>:pyf D:/Apps/LLVM/share/clang/clang-format.py<CR>i
+
 " g:clang_format#
-let g:clang_format#style_options = {
-            \ "UseTab" : "Never",
-            \ "IndentWidth" : 4,
-            \ "BreakBeforeBraces" : "Allman",
-            \ "IndentCaseLabels": "false",
-            \ "ColumnLimit" : 0,
-            \ "AllowShortIfStatementsOnASingleLine" : "false"}
+"let g:clang_format#style_options = {
+"           \ "UseTab" : "Never",
+"           \ "IndentWidth" : 4,
+"           \ "BreakBeforeBraces" : "Allman",
+"           \ "IndentCaseLabels": "false",
+"           \ "ColumnLimit" : 0,
+"           \ "AllowShortIfStatementsOnASingleLine" : "false"}
 " }}}
 
 " tagbar {{{
@@ -205,8 +219,19 @@ nnoremap <leader>ff :Ag! <cword><CR>
 " Path related {{{
 cd D:\Projects\
 nnoremap <leader>lsr :cd d:\Projects\LSR_C\TopWorks-LMT-00.09.32\<cr>
-nnoremap <leader>llt :cd d:\Projects\LSR_C\LMT_SOURCES\LLT\<cr> :cscope add cscope.out<cr>
+
+nnoremap <leader>llt :call OpenLLT()<cr>
+function OpenLLT()
+    cd d:\Projects\LSR_C\LMT_SOURCES\LLT\
+    cscope add cscope.out
+endfunction
+
 nnoremap <leader>vim :cd d:\Apps\Vim\vimfiles\<cr>
+
+" }}}
+
+" Ultisnip {{{
+let g:UltiSnipsExpandTrigger="<tab>"
 
 " }}}
 
