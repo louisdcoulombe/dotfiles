@@ -6,6 +6,9 @@ cd ~
 rm .bashrc
 ln -s .dotfiles/.bashrc .bashrc
 
+# hgrc
+ln -s .dotfiles/.hgrc .hgrc
+
 # tmux
 ln -s .dotfiles/.tmux.conf .tmux.conf
 
