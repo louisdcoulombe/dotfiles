@@ -1,0 +1,6 @@
+[ui]
+username = calocou <louis-david.a.coulombe@ca.abb.com>
+interface = curses
+
+[alias]
+crecord = commit -i
