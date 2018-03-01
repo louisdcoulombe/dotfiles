@@ -23,12 +23,12 @@ Plugin 'https://github.com/rking/ag.vim'
 "Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'https://github.com/scrooloose/nerdcommenter'
-Plugin 'klen/python-mode'
+"Plugin 'klen/python-mode'
 Plugin 'https://github.com/davidhalter/jedi-vim'
 Plugin 'https://github.com/vim-scripts/cmake.vim-syntax'
 Plugin 'https://github.com/ervandew/supertab'
 Plugin 'majutsushi/tagbar'
-Plugin 'https://github.com/vim-scripts/OmniCppComplete'
+"Plugin 'https://github.com/vim-scripts/OmniCppComplete'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
