@@ -7,7 +7,7 @@ rm .bashrc
 ln -s .dotfiles/.bashrc .bashrc
 
 # hgrc
-ln -s .dotfiles/.hgrc .hgrc
+#ln -s .dotfiles/.hgrc .hgrc
 
 # tmux
 ln -s .dotfiles/.tmux.conf .tmux.conf
@@ -20,5 +20,8 @@ vim +PluginInstall +qall
 # install oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+# Install custom files
+cp ./oh_my_zsh/custom/ ~/.oh-my-zsh/custom/
+
 # install pyenv
-curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+#curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
