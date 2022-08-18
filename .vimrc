@@ -57,6 +57,8 @@ set cursorline
 set incsearch
 set number
 set noerrorbells         " don't beep
+set visualbell "please dont beep
+set t_vb=   "aagain no beeepp 
 set history=1000
 set hidden
 
@@ -83,10 +85,22 @@ autocmd! bufwritepost .vimrc source %
 
 " Windows navigation remapping. {{{
 " CTRL-<H-L>
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+
+nnoremap tn :tabedit<Return>
+nnoremap tl :bn<Return>
+nnoremap th :bp<Return>
+
+nnoremap ss :split<Return><C-w>w
+nnoremap sv :vsplit<Return><C-w>w
+
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
 " }}}
 
 " Buffer remap {{{
