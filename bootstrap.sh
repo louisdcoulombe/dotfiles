@@ -3,8 +3,8 @@
 cd ~
 
 # Bashrc
-rm .bashrc
-ln -s .dotfiles/.bashrc .bashrc
+#rm .bashrc
+#ln -s .dotfiles/.bashrc .bashrc
 
 # hgrc
 #ln -s .dotfiles/.hgrc .hgrc

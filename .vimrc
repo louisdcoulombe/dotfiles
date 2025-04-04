@@ -28,6 +28,9 @@ Plugin 'https://github.com/davidhalter/jedi-vim'
 Plugin 'https://github.com/vim-scripts/cmake.vim-syntax'
 Plugin 'https://github.com/ervandew/supertab'
 Plugin 'majutsushi/tagbar'
+Plugin 'https://github.com/aklt/plantuml-syntax'
+Plugin 'https://github.com/tyru/open-browser.vim.git'
+Plugin 'https://github.com/weirongxu/plantuml-previewer.vim.git'
 "Plugin 'https://github.com/vim-scripts/OmniCppComplete'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
