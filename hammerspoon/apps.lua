@@ -50,7 +50,7 @@ mod.name = {
 mod.slackTeamMapping = {
   -- slack domain (with or without '.slack.com') = "teamId"
   -- example:
-  afakecompany = "T00000000"
+  nesto = "nesto"
 }
 
 local screenRatioNotch = 1125.0

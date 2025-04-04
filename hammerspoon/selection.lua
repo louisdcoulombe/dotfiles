@@ -67,6 +67,8 @@ function mod.actOn(engine)
     if text:gmatch("https?://")() then
       openUrl(text)
       -- TODO: Cleanup silly regex
+    elseif text:gmatch("%u+-%d+")() then
+        openUrl("https://nestoca.atlassian.net/browse/" .. text)
     elseif text:gmatch("1%d%d%d%d%d%d%d%d%d+")() then
       mod.epochSinceNow(text)
     else
