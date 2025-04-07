@@ -33,6 +33,11 @@ local bindings = {
       {key = '1', fn = apps.activityMonitor, shift = true, desc = 'Activity Monitor with CPU Graph'},
       -- key = '5' reserved for Alfred snippets
       {key = 'a', name = 'Slack'},
+      {key = 's', fn = function() 
+        windows.launchOrCycleFocus("Slack")
+        hs.timer.usleep(10000 * 1)
+        hs.eventtap.keyStroke({'cmd'}, 'k')
+        end, desc = 'Slack - Cycle'},
       {key = '9', name = 'Spotify'},
       {key = '\\', name = '1Password'},
       -- {key = 'a', name = 'Figma'},
@@ -97,7 +102,7 @@ local bindings = {
       -- {key = 'q', fn = hs.toggleConsole, shift = true, desc = 'HS - Console'},
       -- {key = 'r', fn = emacs.orgRifle, desc = 'Org - Capture selection to Resources'},
       -- {key = 'r', fn = emacs.references, shift = true, desc = 'Org - Show Resources'},
-      -- {key = 's', name = 'Cursor'},
+      -- {key = 's', fn = chrome.slackQuickSwitcher, desc = 'Slack - Quick Switcher'},
       -- {key = 't', fn = emacs.capture(), desc = 'Org - Capture'},
       -- {key = 't', fn = emacs.inbox, shift = true, desc = 'Org - Inbox'},
       {key = 't', name = 'Sunsama'},
