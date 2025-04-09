@@ -53,11 +53,10 @@ function mod.toggleOfficeLight()
 
     local response, body, _ = hs.http.post(url, hs.json.encode(data), headers)
     if response ~= 200 then
-      hs.notify.new({title=response, informativeText=body}):send()
+      local error = string.format("Failed to toggle '%s' with status code '%s' : %s", device, response, body)
+      logger.e(error)
     end
-    -- print(body)
   end
-  -- hs.dialog.alert(200, 200, function() end, "Response", response, "Done")
 end
 
 function mod.officeAutomation(scene, command)
