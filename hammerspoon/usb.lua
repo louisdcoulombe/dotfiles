@@ -39,7 +39,7 @@ local globalHandler = nil
 
 function mod.toggleOfficeLight()
   -- read from config because hammerspoon doesn't load environment variable
-  local hassKey = hs.json.read("/Users/louis-davidcoulombe/.hammerspoon.json").HOME_ASSISTANT_API_KEY
+  local hassKey = hs.json.read(os.getenv('HOME') .. "/.hammerspoon.json").HOME_ASSISTANT_API_KEY
   local headers = {
     ["Authorization"] = "Bearer " .. hassKey,
     ["Content-Type"] = "application/json"
