@@ -1,5 +1,5 @@
 local logger = hs.logger.new('usb', 'debug')
-
+local http = require "hs.http"
 local apps = require "apps"
 local audio = require "audio"
 local process = require "utils/process"
@@ -36,6 +36,29 @@ local globalHandler = nil
 --   vendorID = 1356,
 --   vendorName = "Sony"
 -- }
+
+function mod.toggleOfficeLight()
+  -- read from config because hammerspoon doesn't load environment variable
+  local hassKey = hs.json.read("/Users/louis-davidcoulombe/.hammerspoon.json").HOME_ASSISTANT_API_KEY
+  local headers = {
+    ["Authorization"] = "Bearer " .. hassKey,
+    ["Content-Type"] = "application/json"
+  }
+  local devices = { "switch.smart_switch_2001085862680225188448e1e9168eee_outlet", "switch.petite_lampe_bureau_outlet" }
+  local url = "http://homeassistant.local:8123/api/services/switch/toggle"
+  for _, device in pairs(devices) do
+    local data = {
+      entity_id = device,
+    }
+
+    local response, body, _ = hs.http.post(url, hs.json.encode(data), headers)
+    if response ~= 200 then
+      hs.notify.new({title=response, informativeText=body}):send()
+    end
+    -- print(body)
+  end
+  -- hs.dialog.alert(200, 200, function() end, "Response", response, "Done")
+end
 
 function mod.officeAutomation(scene, command)
   return function()
