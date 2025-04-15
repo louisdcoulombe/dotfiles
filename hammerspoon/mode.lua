@@ -8,7 +8,7 @@ function mod.create(modifiers, key, name, bindings)
   local mode = hs.hotkey.modal.new(modifiers, key)
 
   function mode:entered()
-    hs.alert.show(name .. ' Mode', 120)
+    hs.alert.show(name .. ' Mode', hs.screen.primaryScreen(), 120)
   end
 
   local function exit()
@@ -30,7 +30,7 @@ function mod.create(modifiers, key, name, bindings)
     local message = binding.desc or binding.name
     local fn = function()
       if message ~= nil then
-        hs.alert.show(message, 0.75)
+        hs.alert.show(message, hs.screen.primaryScreen()  0.75)
       end
       if binding.fn then
         return binding.fn()
