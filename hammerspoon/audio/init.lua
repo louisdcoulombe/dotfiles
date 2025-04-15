@@ -26,7 +26,7 @@ function mod.setDefaultInputDevice()
     device = hs.audiodevice.findDeviceByName(deviceName)
     if device then
       if device:setDefaultInputDevice() then
-        hs.alert.show("Input Device: " .. deviceName)
+        hs.alert.show("Input Device: " .. deviceName, hs.screen.primaryScreen())
         return
       end
     end
@@ -35,13 +35,13 @@ end
 
 function mod.setDefaultOutputDevice()
   for _, deviceName in ipairs(outputDevicePriority) do
-    hs.alert.show(deviceName)
+    hs.alert.show(deviceName, hs.screen.primaryScreen())
     device = hs.audiodevice.findDeviceByName(deviceName)
     if hs.audiodevice.defaultOutputDevice() == device then
-      hs.alert.show('x')
+      hs.alert.show('x', hs.screen.primaryScreen())
     elseif device then
       device:setDefaultOutputDevice()
-      hs.alert.show("Output Device: " .. deviceName)
+      hs.alert.show("Output Device: " .. deviceName, hs.screen.primaryScreen())
       return
     end
   end
@@ -71,7 +71,7 @@ function mod.changeVolume(inc)
     if value <= 0 then
       device:setVolume(0)
       device:setMuted(true)
-      hs.alert.show('Muted')
+      hs.alert.show('Muted', hs.screen.primaryScreen())
     else
       device:setMuted(false)
       mod.setVolume(value)()
@@ -92,7 +92,7 @@ function mod.setVolume(value)
     device:setMuted(false)
 
     device:setVolume(finalValue)
-    hs.alert.show('Volume for ' .. deviceName .. ' set to ' .. tostring(finalValue) .. ' %')
+    hs.alert.show('Volume for ' .. deviceName .. ' set to ' .. tostring(finalValue) .. ' %', hs.screen.primaryScreen())
   end
 end
 
@@ -112,7 +112,7 @@ mod.previous = callAndDisplay(hs.spotify.previous)
 mod.current = hs.spotify.displayCurrentTrack
 
 function mod.playpause()
-  hs.alert.show('Play/Pause')
+  hs.alert.show('Play/Pause', hs.screen.primaryScreen())
   hs.spotify.playpause()
 end
 
