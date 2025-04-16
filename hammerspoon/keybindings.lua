@@ -29,27 +29,36 @@ local bindings = {
     name = keybinder.globalBindings,
     bindings = {
       -- cmd + h reserved for notification
-      {key = '1', name = apps.name.activityMonitor},
-      {key = '1', fn = apps.activityMonitor, shift = true, desc = 'Activity Monitor with CPU Graph'},
+      -- {key = '1', name = apps.name.activityMonitor},
+      -- {key = '1', fn = apps.activityMonitor, shift = true, desc = 'Activity Monitor with CPU Graph'},
+      -- {key = '2', fn = usb.toggleOfficeLight, desc = 'Toggle Office Light'},
+      {key = '1', fn = screen.moveWindowToDisplay(1), desc = 'Move window to display 1'},
+      {key = '2', fn = screen.moveWindowToDisplay(2), desc = 'Move window to display 2'},
+      {key = '3', fn = screen.moveWindowToDisplay(3), desc = 'Move window to display 3'},
       -- key = '5' reserved for Alfred snippets
       {key = 'a', name = 'Slack'},
-      {key = 's', fn = function() 
-        windows.launchOrCycleFocus("Slack")
-        hs.timer.usleep(10000 * 1)
-        hs.eventtap.keyStroke({'cmd'}, 'k')
+      {key = 's', fn = function()
+          hs.application.launchOrFocus('Slack')
+          hs.timer.usleep(10000 * 0.5)
+          -- hs.eventtap.keyStroke({'cmd'}, 'k')
+          -- hs.timer.usleep(10000 * 1)
+          hs.eventtap.keyStrokes('/sdm access approval requests')
+          hs.eventtap.keyStroke({},'return')
         end, desc = 'Slack - Cycle'},
       {key = '9', name = 'Spotify'},
       {key = '\\', name = '1Password'},
       -- {key = 'a', name = 'Figma'},
-      {key = 'b', fn = apps.openNotification, desc = 'Notification - Open'},
-      {key = 'b', fn = apps.closeNotification, shift = true, desc = 'Notification - Action'},
+      -- {key = 'b', fn = apps.closeNotification, shift = true, desc = 'Notification - Action'},
+      {key = 'b', fn = apps.closeNotification, desc = 'Notification - Action'},
+      {key = 'd', fn = apps.openNotification, desc = 'Notification - Open'},
       {key = 'g', fn = chrome.activateTab('louis-david.coulombe@nesto.ca')},
       {key = 'c', fn = chrome.activateTab('Calendar')},
       {key = 'h', fn = chrome.activateTab('Meet')},
-      {key = 'd', fn = selection.actOn('google'), desc = 'Search selection'},
-      {key = 'f', name = 'Finder'},
-      {key = 'f', name = 'Preview', shift = true},
-      {key = 'i', name = 'iTerm'},
+      {key = 'f', fn = selection.actOn('google'), desc = 'Search selection'},
+      -- {key = 'f', name = 'Finder'},
+      -- {key = 'f', name = 'Preview', shift = true},
+      -- {key = 'i', name = 'iTerm'},
+      {key = 'i', name = 'Wave'},
       {key = 'i', fn = apps.iTermOmni, shift = true},
       {
         key = 'j',
@@ -90,6 +99,18 @@ local bindings = {
         shift = true,
         desc = 'Window - Center (small)',
       },
+      {key = ';', fn = function()
+         hs.application.launchOrFocus(chrome.name)
+         hs.timer.usleep(10000 * 0.5)
+         hs.eventtap.keyStroke({'cmd'}, 'l') 
+         hs.eventtap.keyStrokes('@tabs')
+         hs.eventtap.keyStroke({}, 'tab')
+      end, desc = 'Find Chrome tab'},
+      {key = "'", fn = function()
+         hs.application.launchOrFocus(chrome.name)
+         hs.timer.usleep(10000 * 0.5)
+         hs.eventtap.keyStroke({'cmd', 'shift'}, 'a') 
+      end, desc = 'Find Chrome tab'},
       {key = 'm', pos = {0.00, 0.00, 1.00, 1.00}, desc = 'Full Screen (Current)'},
       {key = 'm', fn = windows.previousScreen, shift = true, desc = 'Move window the next screen'},
       -- {key = 'o', name = apps.name.idea},
@@ -141,6 +162,7 @@ local bindings = {
 ----------------
 
 local hyperModeBindings = {
+  {key = '2', fn = usb.toggleOfficeLight, desc = 'Toggle Office Light'},
   {key = '9', fn = audio.open, desc = 'Spotify'},
   {key = 'b', fn = screen.setBrightness(0.8), desc = 'Set brightness to 80%.'},
   {key = 'c', fn = usb.officeAutomation('coffee', 'on'), desc = 'Turn coffee machine on'},
@@ -159,6 +181,11 @@ local hyperModeBindings = {
   {key = 'y', fn = audio.changeVolume(-100), desc = 'Mute'},
   {key = 'w', fn = wifi.restartWifi, desc = 'Restart WiFi'},
   {key = 'z', fn = usb.workSetup, desc = 'Work setup'},
+  {key = 's', fn = function() 
+        windows.launchOrCycleFocus(chrome.name)
+        hs.timer.usleep(10000 * 2)
+        hs.eventtap.keyStroke({'cmd', 'alt'}, 'm')
+        end, desc = 'Google Chrome - Merge all windows'},
 }
 
 function mod.init()
