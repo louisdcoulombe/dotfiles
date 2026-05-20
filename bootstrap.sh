@@ -12,6 +12,13 @@ cd ~
 # tmux
 ln -s .dotfiles/.tmux.conf .tmux.conf
 
+# Config specific to mac
+if [ "$(uname)" == "Darwin" ]; then
+  ln -s .dotfiles/.hammerspoon .hammerspoon 
+  ln -s .dotfiles/karabiner/ .config/karabiner
+fi
+
+
 # Vim
 ln -s .dotfiles/.vimrc .vimrc
 git clone https://github.com/VundleVim/Vundle.vim ~/.vim/bundle/Vundle.vim

@@ -38,3 +38,5 @@ alias pac="source ./venv/bin/activate"
 
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
+
+export ELLIE_API_TOKEN="FtlVzB51SmaChlTamRMBbaJFeWsOpu59vfqZl32f"
