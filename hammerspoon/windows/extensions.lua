@@ -162,6 +162,7 @@ function mod.launchOrCycleFocus(applicationName)
     else
       targetWindow = hs.window.focusedWindow()
     end
+    -- logger.df('targetWindow: %s', targetWindow)
 
     if not targetWindow then
       logger.df('failed finding a window for application: %s', applicationName)

@@ -1,6 +1,6 @@
 local apps = require "apps"
-local audio = require "audio"
-local battery = require "battery"
+-- local audio = require "audio"
+-- local battery = require "battery"
 local keybindings = require "keybindings"
 local usb = require "usb"
 

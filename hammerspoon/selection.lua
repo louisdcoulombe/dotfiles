@@ -61,14 +61,25 @@ local function google(text, engine)
   query(engines[engine], text or mod.getSelectedText())
 end
 
+function mod.searchRippling()
+    local text = mod.getSelectedText()
+    hs.pasteboard.setContents(text)
+    local searchURL = "https://app.rippling.com/search"
+    openUrl(searchURL)
+end
+
 function mod.actOn(engine)
   return function()
     local text = mod.getSelectedText()
     if text:gmatch("https?://")() then
       openUrl(text)
       -- TODO: Cleanup silly regex
-    elseif text:gmatch("%u+-%d+")() then
-        openUrl("https://nestoca.atlassian.net/browse/" .. text)
+    elseif text:gmatch("%a+-%d+")() then
+        openUrl("https://nestoca.atlassian.net/browse/" .. string.upper(text))
+    elseif text:gmatch("REQ%d+")() then
+        openUrl("https://nesto.service-now.com/nav_to.do?uri=sc_request.do?sysparm_query=number=" .. string.upper(text))
+    elseif text:gmatch("RITM%d+")() then
+        openUrl("https://nesto.service-now.com/nav_to.do?uri=sc_request.do?sysparm_query=number=" .. string.upper(text))
     elseif text:gmatch("1%d%d%d%d%d%d%d%d%d+")() then
       mod.epochSinceNow(text)
     else

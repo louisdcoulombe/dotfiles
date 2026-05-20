@@ -1,4 +1,5 @@
 local apps = require 'apps'
+local windows = require 'windows'
 local logger = hs.logger.new('chrome', 'debug')
 
 local mod = {}
@@ -13,13 +14,20 @@ local function wait(n)
 end
 
 function openSlack()
-  mod.activateTab(mod.tab.slack)()
+    windows.launchOrCycleFocus("Slack")
+  -- mod.activateTab(mod.tab.slack)()
 end
 
 function mod.slackQuickSwitcher()
   openSlack()
-  wait(2)
+  wait(1)
   hs.eventtap.keyStroke({'cmd'}, 'k')
+end
+
+function mod.mergeAllTabs()
+  windows.launchOrCycleFocus(mod.name)
+  wait(1)
+  hs.eventtap.keyStroke({'cmd', 'alt'}, 'm')
 end
 
 function mod.slackReactionEmoji(chars)

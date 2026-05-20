@@ -30,7 +30,7 @@ function mod.create(modifiers, key, name, bindings)
     local message = binding.desc or binding.name
     local fn = function()
       if message ~= nil then
-        hs.alert.show(message, hs.screen.primaryScreen()  0.75)
+        hs.alert.show(message, hs.screen.primaryScreen(), 0.75)
       end
       if binding.fn then
         return binding.fn()

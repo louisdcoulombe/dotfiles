@@ -37,15 +37,15 @@ local globalHandler = nil
 --   vendorName = "Sony"
 -- }
 
-function mod.toggleOfficeLight()
-  -- read from config because hammerspoon doesn't load environment variable
-  local hassKey = hs.json.read(os.getenv('HOME') .. "/.hammerspoon.json").HOME_ASSISTANT_API_KEY
+-- read from config because hammerspoon doesn't load environment variable
+local hassKey = hs.json.read(os.getenv('HOME') .. "/.hammerspoon.json").HOME_ASSISTANT_API_KEY
+function hassOfficeLight(status)
   local headers = {
     ["Authorization"] = "Bearer " .. hassKey,
     ["Content-Type"] = "application/json"
   }
   local devices = { "switch.smart_switch_2001085862680225188448e1e9168eee_outlet", "switch.petite_lampe_bureau_outlet" }
-  local url = "http://homeassistant.local:8123/api/services/switch/toggle"
+  local url = "http://homeassistant.local:8123/api/services/switch/" .. status
   for _, device in pairs(devices) do
     local data = {
       entity_id = device,
@@ -57,6 +57,14 @@ function mod.toggleOfficeLight()
       logger.e(error)
     end
   end
+end
+
+function mod.turnOnOfficeLight()
+  hassOfficeLight("turn_on")
+end
+
+function mod.toggleOfficeLight()
+  hassOfficeLight("toggle")
 end
 
 function mod.officeAutomation(scene, command)
@@ -129,8 +137,8 @@ local watchedEvents = {
   -- {eventType = "removed", productID = 3140, productName = "ZV-1", vendorID = 1356, vendorName = "Sony", fn = mod.officeAutomation("off")},
 
   -- ZV-1 with webcam in USB streaming mod
-  {eventType = "added", productID = 3556, productName = "ZV-1", vendorID = 1356, vendorName = "Sony", fn = mod.officeAutomation("office_call", "on")},
-  {eventType = "removed", productID = 3556, productName = "ZV-1", vendorID = 1356, vendorName = "Sony", fn = mod.officeAutomation("office_call", "off")},
+  -- {eventType = "added", productID = 3556, productName = "ZV-1", vendorID = 1356, vendorName = "Sony", fn = mod.officeAutomation("office_call", "on")},
+  -- {eventType = "removed", productID = 3556, productName = "ZV-1", vendorID = 1356, vendorName = "Sony", fn = mod.officeAutomation("office_call", "off")},
 }
 
 function mod.init()

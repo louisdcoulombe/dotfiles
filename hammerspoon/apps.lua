@@ -3,6 +3,12 @@ local windows = require 'windows'
 
 local mod = {}
 
+function mod.Execute(cmd)
+  return function()
+    os.execute(cmd)
+  end
+end
+
 function mod.getExecPath(exec)
   dirs = {'/opt/homebrew/bin/', '/usr/local/bin/', os.getenv("HOME") .. "/bin/" }
   for _, dir in ipairs(dirs) do

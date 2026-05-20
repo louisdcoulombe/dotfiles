@@ -143,4 +143,27 @@ function mod.init()
   headphones_watcher.init(plugged, unplugged)
 end
 
+-- -- Remap media keys to Spotify-priority equivalents
+-- function mod.spotifyVolymeDown()
+--   return function()
+--     playing = hs.spotify.isPlaying()
+--     if playing then
+--       hs.spotify.volumeDown()
+--     -- else
+--     --   output = hs.audiodevice.defaultOutputDevice()
+--       -- output:setVolume(output:volume() - 10)
+--     end
+-- end
+--
+-- hs.hotkey.bind({}, "f12", function()
+--   playing = hs.spotify.isPlaying()
+--
+--   if playing then
+--     hs.spotify.volumeUp()
+--   -- else
+--   --   output = hs.audiodevice.defaultOutputDevice()
+--   --   output:setVolume(output:volume() + 10)
+--   end
+-- end)
+
 return mod
