@@ -4,6 +4,7 @@ alias reload="exec zsh"
 alias v=nvim
 alias g=git
 alias c=claude
+alias np=pnpm
 
 # Movements
 alias ..="cd .."
