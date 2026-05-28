@@ -14,7 +14,7 @@ install_packages() {
   for p in "${pkgs[@]}"; do
     brew list --formula "$p" >/dev/null 2>&1 || missing+=("$p")
   done
-  [ "${#missing[@]}" -gt 0 ] && brew install "${missing[@]}"
+  if [ "${#missing[@]}" -gt 0 ]; then brew install "${missing[@]}"; fi
 }
 
 install_packages
@@ -33,14 +33,15 @@ fi
 
 # Neovim
 mkdir -p "$HOME/.config"
-ln -sf "$DOTFILES/nvim"         "$HOME/.config/nvim"
+ln -sfn "$DOTFILES/nvim"         "$HOME/.config/nvim"
 
 # Zsh config
-ln -sf "$DOTFILES/zsh"          "$HOME/.config/zsh"
+ln -sfn "$DOTFILES/zsh"          "$HOME/.config/zsh"
 
 # mise
 mkdir -p "$HOME/.config/mise"
 ln -sf "$DOTFILES/mise/config.toml" "$HOME/.config/mise/config.toml"
+mise trust "$HOME/.config/mise/config.toml"
 mise install
 
 if [ "$(uname)" = "Darwin" ]; then
