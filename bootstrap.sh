@@ -47,4 +47,6 @@ mise install
 if [ "$(uname)" = "Darwin" ]; then
   ln -sf "$DOTFILES/hammerspoon"  "$HOME/.hammerspoon"
   ln -sf "$DOTFILES/karabiner"    "$HOME/.config/karabiner"
+  mkdir -p "$HOME/.config/ghostty"
+  ln -sf "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
 fi

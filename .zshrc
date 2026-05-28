@@ -4,6 +4,11 @@
 #
 # Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
 
+# Auto-start tmux when running inside Ghostty (but not already inside tmux).
+if [[ -n "$GHOSTTY_RESOURCES_DIR" && -z "$TMUX" ]]; then
+  exec tmux new-session -A -s main
+fi
+
 # Periodic auto-update on Zsh startup: 'ask' or 'no'.
 # You can manually run `z4h update` to update everything.
 zstyle ':z4h:' auto-update      'ask'
@@ -12,9 +17,6 @@ zstyle ':z4h:' auto-update-days '28'
 
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard  'mac'
-
-# Start tmux if not already in tmux.
-zstyle ':z4h:' start-tmux command tmux -u new -A -D -t z4h
 
 # Whether to move prompt to the bottom when zsh starts and on Ctrl+L.
 zstyle ':z4h:' prompt-at-bottom 'no'
