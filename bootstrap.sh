@@ -9,7 +9,7 @@ install_packages() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
-  local pkgs=(jq yq bash gum fzf tmux neovim gh)
+  local pkgs=(jq yq bash gum fzf tmux neovim gh mise)
   local missing=()
   for p in "${pkgs[@]}"; do
     brew list --formula "$p" >/dev/null 2>&1 || missing+=("$p")
@@ -37,6 +37,11 @@ ln -sf "$DOTFILES/nvim"         "$HOME/.config/nvim"
 
 # Zsh config
 ln -sf "$DOTFILES/zsh"          "$HOME/.config/zsh"
+
+# mise
+mkdir -p "$HOME/.config/mise"
+ln -sf "$DOTFILES/mise/config.toml" "$HOME/.config/mise/config.toml"
+mise install
 
 if [ "$(uname)" = "Darwin" ]; then
   ln -sf "$DOTFILES/hammerspoon"  "$HOME/.hammerspoon"
