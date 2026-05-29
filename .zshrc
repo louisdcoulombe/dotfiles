@@ -97,6 +97,10 @@ compdef _directories md
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
+# Tool specific inits
+source <(fzf --zsh)
+eval "$(zoxide init zsh)"
+
 # Load all .zsh files from ~/.config/zsh
 for f in ~/.config/zsh/*.zsh(N); do
   source "$f"
