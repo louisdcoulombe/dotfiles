@@ -1,10 +1,23 @@
-elwiss dotfiles
-===============
+# dotfiles
 
+Personal macOS dotfiles managed via manual symlinks.
 
-Install receipe
-	apt-get install git vim tmux vim-nox
+## Install
 
+```sh
+./bootstrap.sh
+```
 
-required packages in debian:
-vim-nox : for utilsnip
+Installs Homebrew packages, then symlinks configs into place.
+
+## What's included
+
+| Component | Source | Target |
+|-----------|--------|--------|
+| Zsh | `.zshrc`, `zsh/` | `~/.zshrc`, `~/.config/zsh/` |
+| tmux | `.tmux.conf` | `~/.tmux.conf` |
+| Neovim | `nvim/` | `~/.config/nvim/` |
+| Hammerspoon | `hammerspoon/` | `~/.hammerspoon/` |
+| Karabiner | `karabiner/` | `~/.config/karabiner/` |
+| Ghostty | `ghostty/config` | `~/.config/ghostty/config` |
+| mise | `mise/config.toml` | `~/.config/mise/config.toml` |
