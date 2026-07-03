@@ -31,6 +31,13 @@ if [ ! -d "$TPM_DIR" ]; then
   git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
 fi
 
+# Custom tmux2k segment: ccusage (Claude cost + tokens). Requires tmux2k to be
+# installed first via TPM (<prefix> I). Safe to re-run once the plugin exists.
+TMUX2K_PLUGINS="$HOME/.tmux/plugins/tmux2k/plugins"
+if [ -d "$TMUX2K_PLUGINS" ]; then
+  ln -sf "$DOTFILES/tmux/ccusage.sh" "$TMUX2K_PLUGINS/ccusage.sh"
+fi
+
 # Neovim
 mkdir -p "$HOME/.config"
 ln -sfn "$DOTFILES/nvim"         "$HOME/.config/nvim"
