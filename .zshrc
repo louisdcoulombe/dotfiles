@@ -1,11 +1,14 @@
+# Auto-start tmux on shell startup. Set to false to get a plain shell.
+AUTO_START_TMUX=false
+
 # Personal Zsh configuration file. It is strongly recommended to keep all
 # shell customization and configuration (including exported environment
 # variables such as PATH) in this file or in files sourced from it.
 #
 # Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
 
-# Auto-start tmux when running inside Ghostty (but not already inside tmux).
-if [[ -n "$GHOSTTY_RESOURCES_DIR" && -z "$TMUX" ]]; then
+# Auto-start tmux (but not if already inside tmux).
+if [[ "$AUTO_START_TMUX" == true && -z "$TMUX" ]]; then
   exec tmux new-session -A -s main
 fi
 
@@ -20,6 +23,11 @@ zstyle ':z4h:bindkey' keyboard  'mac'
 
 # Whether to move prompt to the bottom when zsh starts and on Ctrl+L.
 zstyle ':z4h:' prompt-at-bottom 'no'
+
+# Don't start z4h's integrated tmux. herdr is already the terminal
+# multiplexer; a nested tmux hides the `claude` process from herdr's
+# agent detection, so agents never show up in herdr.
+zstyle ':z4h:' start-tmux no
 
 # Mark up shell's output with semantic information.
 zstyle ':z4h:' term-shell-integration 'yes'
@@ -100,8 +108,12 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 # Tool specific inits
 source <(fzf --zsh)
 eval "$(zoxide init zsh)"
+export PATH="/Users/louis-davidcoulombe/.bun/bin:$PATH"
 
 # Load all .zsh files from ~/.config/zsh
 for f in ~/.config/zsh/*.zsh(N); do
   source "$f"
 done
+
+
+eval "$(try init ~/github/nestoca/__try)"
