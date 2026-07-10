@@ -113,7 +113,7 @@ local bindings = {
       end, desc = 'Find Chrome tab'},
       {key = 'm', pos = {0.00, 0.00, 1.00, 1.00}, desc = 'Full Screen (Current)'},
       {key = 'm', fn = windows.previousScreen, shift = true, desc = 'Move window the next screen'},
-      {key = 'o', name = 'Dbeaver'},
+      {key = 'o', name = 'Obsidian'},
       -- {key = 'o', fn = apps.ideaOmni, shift = true},
       {key = 'e', name = 'Ellie'},
       -- {key = 'e', fn = usb.officeAutomation('office_call', 'off'), shift = true},
