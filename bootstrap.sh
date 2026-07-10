@@ -51,6 +51,10 @@ ln -sf "$DOTFILES/mise/config.toml" "$HOME/.config/mise/config.toml"
 mise trust "$HOME/.config/mise/config.toml"
 mise install
 
+# herdr
+mkdir -p "$HOME/.config/herdr"
+ln -sf "$DOTFILES/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+
 if [ "$(uname)" = "Darwin" ]; then
   ln -sf "$DOTFILES/hammerspoon"  "$HOME/.hammerspoon"
   ln -sf "$DOTFILES/karabiner"    "$HOME/.config/karabiner"
