@@ -5,6 +5,7 @@ alias v=nvim
 alias g=git
 alias c=claude
 alias np=pnpm
+alias cusage="bunx ccusage"
 
 # Movements
 alias ..="cd .."
