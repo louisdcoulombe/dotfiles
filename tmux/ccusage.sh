@@ -56,7 +56,7 @@ refresh() {
     case "$cost" in ''|null) return ;; esac
     case "$tokens" in ''|null) return ;; esac
 
-    value="$(printf '$%.2f' "$cost") $ccusage_token_icon $(humanize "$tokens")"
+    value="$(printf '%.2f' "$cost") $ccusage_token_icon $(humanize "$tokens")"
     printf '%s' "$value" >"$cache_file.tmp" && mv -f "$cache_file.tmp" "$cache_file"
 }
 
