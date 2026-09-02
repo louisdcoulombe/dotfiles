@@ -57,6 +57,7 @@ mkdir -p "$HOME/.config/herdr"
 ln -sf "$DOTFILES/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 
 if [ "$(uname)" = "Darwin" ]; then
+  brew list --cask karabiner-elements >/dev/null 2>&1 || brew install --cask karabiner-elements
   ln -sf "$DOTFILES/hammerspoon"  "$HOME/.hammerspoon"
   ln -sf "$DOTFILES/karabiner"    "$HOME/.config/karabiner"
   mkdir -p "$HOME/.config/ghostty"
