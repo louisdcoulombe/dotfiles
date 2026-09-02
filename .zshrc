@@ -116,4 +116,4 @@ for f in ~/.config/zsh/*.zsh(N); do
 done
 
 
-eval "$(try init ~/github/nestoca/__try)"
+[[ -d ~/github/nestoca/__try ]] && eval "$(try init ~/github/nestoca/__try)"
