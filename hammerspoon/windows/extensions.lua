@@ -130,11 +130,12 @@ function mod.launchOrCycleFocus(applicationName)
     local nextWindow = nil
     local targetWindow
     local focusedWindow = hs.window.frontmostWindow()
-    cursorPositions[focusedWindow:title()] = hs.mouse.absolutePosition()
     if not focusedWindow then
-      hs.application.launchOrFocus(applicationName:gsub('[0-9]+', ''))
+      local sanitizedName = applicationName:gsub('[0-9]+', '')
+      hs.application.launchOrFocus(sanitizedName)
       return
     end
+    cursorPositions[focusedWindow:title()] = hs.mouse.absolutePosition()
     local app = focusedWindow:application()
 
     focusedWindow:focus()
