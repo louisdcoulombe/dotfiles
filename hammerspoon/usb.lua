@@ -38,8 +38,13 @@ local globalHandler = nil
 -- }
 
 -- read from config because hammerspoon doesn't load environment variable
-local hassKey = hs.json.read(os.getenv('HOME') .. "/.hammerspoon.json").HOME_ASSISTANT_API_KEY
+local hassConfig = hs.json.read(os.getenv('HOME') .. "/.hammerspoon.json")
+local hassKey = hassConfig and hassConfig.HOME_ASSISTANT_API_KEY
 function hassOfficeLight(status)
+  if not hassKey then
+    logger.e("HOME_ASSISTANT_API_KEY missing from ~/.hammerspoon.json")
+    return
+  end
   local headers = {
     ["Authorization"] = "Bearer " .. hassKey,
     ["Content-Type"] = "application/json"
