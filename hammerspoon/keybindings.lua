@@ -1,5 +1,6 @@
 local apps = require 'apps'
 local audio = require 'audio'
+local bluetooth = require 'bluetooth'
 local keybinder = require 'keybinder'
 local emacs = require 'emacs'
 local mode = require 'mode'
@@ -168,6 +169,7 @@ local hyperModeBindings = {
   {key = '3', fn = usb.turnOnOfficeLight, desc = 'Office Light ON'},
   {key = '4', fn = apps.Execute("pkill -9 LogiMgrDaemon"), desc = 'Kill Logitec'},
   {key = '9', fn = audio.open, desc = 'Spotify'},
+  {key = 'b', fn = bluetooth.connectSpeakers, desc = 'Connect OS-10 speakers'},
   -- {key = 'b', fn = screen.setBrightness(0.8), desc = 'Set brightness to 80%.'},
   -- {key = 'c', fn = usb.officeAutomation('coffee', 'on'), desc = 'Turn coffee machine on'},
   -- {key = 'd', fn = usb.officeAutomation('desk', 'on'), desc = 'Turn desk on'},

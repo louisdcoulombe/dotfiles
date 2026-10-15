@@ -9,7 +9,7 @@ install_packages() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
-  local pkgs=(jq yq bash gum fzf tmux neovim gh mise fd ripgrep)
+  local pkgs=(jq yq bash gum fzf tmux neovim gh mise fd ripgrep blueutil)
   local missing=()
   for p in "${pkgs[@]}"; do
     brew list --formula "$p" >/dev/null 2>&1 || missing+=("$p")
