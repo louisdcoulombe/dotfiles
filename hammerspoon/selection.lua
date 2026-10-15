@@ -63,9 +63,7 @@ end
 
 function mod.searchRippling()
     local text = mod.getSelectedText()
-    hs.pasteboard.setContents(text)
-    local searchURL = "https://app.rippling.com/search"
-    openUrl(searchURL)
+    query("https://app.rippling.com/search?query=", text)
 end
 
 function mod.actOn(engine)
